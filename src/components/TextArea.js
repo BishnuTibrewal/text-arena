@@ -6,41 +6,42 @@ function TextArea() {
   const [chars, setChars] = useState(0);
   const [words, setWords] = useState(0);
   const [minutes, setMinutes] = useState(0);
+  const [input, setInput] = useState("");
+  const [output, setOutput] = useState("");
 
   function summary() {
-    setChars(document.getElementById("OutputTextArea").value.length);
-    setWords(document.getElementById("OutputTextArea").value.split(" ").length);
-    setMinutes(words * 0.005);
+    setTimeout(() => {
+      setChars(document.getElementById("OutputTextArea").value.length);
+      setWords(
+        document.getElementById("OutputTextArea").value.split(" ").length
+      );
+      setMinutes(
+        document.getElementById("OutputTextArea").value.split(" ").length *
+          0.005
+      );
+    }, 1000);
   }
 
   const capitalCase = () => {
-    document.getElementById("OutputTextArea").value = document
-      .getElementById("FloatingTextArea")
-      .value.toUpperCase();
+    setOutput(input.toUpperCase());
     setText("Final Output");
     summary();
   };
 
   const smallCase = () => {
-    document.getElementById("OutputTextArea").value = document
-      .getElementById("FloatingTextArea")
-      .value.toLowerCase();
+    setOutput(input.toLowerCase());
     setText("Final Output");
     summary();
   };
 
   const limitText50 = () => {
-    document.getElementById("OutputTextArea").value = document
-      .getElementById("FloatingTextArea")
-      .value.substring(0, 50);
+    setOutput(input.substring(0, 50));
     setText("Final Output");
     summary();
   };
 
   const limitText100 = () => {
-    document.getElementById("OutputTextArea").value = document
-      .getElementById("FloatingTextArea")
-      .value.substring(0, 100);
+    setOutput(input.substring(0, 100));
     setText("Final Output");
     summary();
   };
@@ -63,17 +64,43 @@ function TextArea() {
     );
   };
 
+  const handleChange = (event) => {
+    setInput(event.target.value);
+  };
+
+  const handleClear = () => {
+    setInput("");
+    setOutput("");
+    setChars(0);
+    setMinutes(0);
+    setWords(0);
+  };
+
+  const handleCopy =()=>{
+    const text= document.getElementById("OutputTextArea")
+    text.select();
+    navigator.clipboard.writeText(text.value);
+
+  }
+
   return (
-    <div style={{ margin: 50 }}>
+    <div>
       <div style={{ marginBottom: 10 }}>
         <b>Enter the text to Analyze: </b>
       </div>
-      <textArea
+      <textarea
         className="form-control"
         placeholder="Enter the Text here"
         id="FloatingTextArea"
+        value={input}
+        onChange={handleChange}
         rows={4}
-      ></textArea>
+      ></textarea>
+      <div style={{ display: "flex", justifyContent: "end", margin: 10 }}>
+        <button className="btn btn-primary" onClick={handleClear}>
+          Clear
+        </button>
+      </div>
       {buttons(capitalCase, "lightseagreen", "Change to Capital Letters")}
       {buttons(smallCase, "steelblue", "Change to Small Letters")}
       {buttons(limitText50, "lightseagreen", "Limit to Fifty Characters")}
@@ -81,12 +108,18 @@ function TextArea() {
       <div style={{ marginTop: 30, marginBottom: 10 }}>
         <b>{text}</b>
       </div>
-      <textArea
+      <textarea
         className="form-control"
         placeholder="Enter the Text here"
         id="OutputTextArea"
         rows={4}
-      ></textArea>
+        value={output}
+      ></textarea>
+      <div style={{ display: "flex", justifyContent: "end", margin: 10 }}>
+        <button className="btn btn-primary" onClick={handleCopy}>
+          Copy
+        </button>
+      </div>
       <div>
         <h6 style={{ marginTop: 10 }}>
           {words} words, {chars} characters

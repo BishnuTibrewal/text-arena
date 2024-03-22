@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 function NavBar(props) {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
-        <a className="navbar-brand" href="/" style={{color:"palevioletred"}}>
+        <a className="navbar-brand" href="/" style={{ color: "palevioletred" }}>
           {props.title}
         </a>
         <button
@@ -52,7 +52,10 @@ function NavBar(props) {
             </li>
           </ul>
           <form className="d-flex" role="search">
-            <button className="btn btn-outline-success" style={{color:"palevioletred", borderColor:"palevioletred"}}>
+            <button
+              className="btn btn-outline-success"
+              style={{ color: "palevioletred", borderColor: "palevioletred" }}
+            >
               Created By: BishTibrewal
             </button>
           </form>
@@ -62,14 +65,14 @@ function NavBar(props) {
   );
 }
 
-NavBar.propTypes={
+NavBar.propTypes = {
   title: PropTypes.string.isRequired,
-  aboutUs: PropTypes.string
-}
+  aboutUs: PropTypes.string,
+};
 
-NavBar.defaultProps ={
+NavBar.defaultProps = {
   title: "Set Title Here",
-  aboutUs: "Add About Here"
-}
+  aboutUs: "Add About Here",
+};
 
 export default NavBar;

@@ -1,13 +1,17 @@
 import "./App.css";
+import About from "./components/About";
 import NavBar from "./components/NavBar";
 import TextArea from "./components/TextArea";
 
 function App() {
   return (
-    <div style={{ backgroundColor:"palevioletred", height: "100vh"}}>
+    <>
       <NavBar title="textArena" aboutUs="About Tool"></NavBar>
-      <TextArea></TextArea>
-    </div>
+      <div style={{ backgroundColor: "palevioletred" ,minHeight: "100vh" , padding:50}}>
+        <TextArea></TextArea>
+        <About></About>
+      </div>
+    </>
   );
 }
 
