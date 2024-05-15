@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-function TextArea() {
+function TextArea(props) {
   const [text, setText] = useState("Waiting for your Selection");
   const [chars, setChars] = useState(0);
   const [words, setWords] = useState(0);
@@ -11,12 +11,12 @@ function TextArea() {
 
   function summary() {
     setTimeout(() => {
-      setChars(document.getElementById("OutputTextArea").value.length);
+      setChars(document.getElementById("FloatingTextArea").value.length);
       setWords(
-        document.getElementById("OutputTextArea").value.split(" ").length
+        document.getElementById("FloatingTextArea").value.split(" ").length
       );
       setMinutes(
-        document.getElementById("OutputTextArea").value.split(" ").length *
+        document.getElementById("FloatingTextArea").value.split(" ").length *
           0.005
       );
     }, 1000);
@@ -25,32 +25,28 @@ function TextArea() {
   const capitalCase = () => {
     setOutput(input.toUpperCase());
     setText("Final Output");
-    summary();
   };
 
   const smallCase = () => {
     setOutput(input.toLowerCase());
     setText("Final Output");
-    summary();
   };
 
   const limitText50 = () => {
     setOutput(input.substring(0, 50));
     setText("Final Output");
-    summary();
   };
 
   const limitText100 = () => {
     setOutput(input.substring(0, 100));
     setText("Final Output");
-    summary();
   };
 
   const buttons = (actionHandler, color, displayText) => {
     return (
       <button
         onClick={actionHandler}
-        className="btn btn-primary"
+        className={`btn btn-${props.mode}`}
         style={{
           minWidth: 140,
           height: 44,
@@ -66,6 +62,7 @@ function TextArea() {
 
   const handleChange = (event) => {
     setInput(event.target.value);
+    summary();
   };
 
   const handleClear = () => {
@@ -76,16 +73,20 @@ function TextArea() {
     setWords(0);
   };
 
-  const handleCopy =()=>{
-    const text= document.getElementById("OutputTextArea")
+  const handleCopy = () => {
+    const text = document.getElementById("OutputTextArea");
     text.select();
     navigator.clipboard.writeText(text.value);
-
-  }
+  };
 
   return (
     <div>
-      <div style={{ marginBottom: 10 }}>
+      <div
+        style={{
+          marginBottom: 10,
+          color: props.mode == "dark" ? "white" : "black",
+        }}
+      >
         <b>Enter the text to Analyze: </b>
       </div>
       <textarea
@@ -96,8 +97,18 @@ function TextArea() {
         onChange={handleChange}
         rows={4}
       ></textarea>
+      <div>
+        <h6 style={{ color: props.mode == "dark" ? "white" : "black" }}>
+          {words} words, {chars} characters
+        </h6>
+      </div>
+      <div>
+        <h6 style={{ color: props.mode == "dark" ? "white" : "black" }}>
+          {minutes} minute(s) Read.
+        </h6>
+      </div>
       <div style={{ display: "flex", justifyContent: "end", margin: 10 }}>
-        <button className="btn btn-primary" onClick={handleClear}>
+        <button className={`btn btn-${props.mode}`} onClick={handleClear}>
           Clear
         </button>
       </div>
@@ -105,7 +116,13 @@ function TextArea() {
       {buttons(smallCase, "steelblue", "Change to Small Letters")}
       {buttons(limitText50, "lightseagreen", "Limit to Fifty Characters")}
       {buttons(limitText100, "steelblue", "Limit to Hundred Characters")}
-      <div style={{ marginTop: 30, marginBottom: 10 }}>
+      <div
+        style={{
+          marginTop: 10,
+          marginBottom: 10,
+          color: props.mode == "dark" ? "white" : "black",
+        }}
+      >
         <b>{text}</b>
       </div>
       <textarea
@@ -116,17 +133,9 @@ function TextArea() {
         value={output}
       ></textarea>
       <div style={{ display: "flex", justifyContent: "end", margin: 10 }}>
-        <button className="btn btn-primary" onClick={handleCopy}>
+        <button className={`btn btn-${props.mode}`} onClick={handleCopy}>
           Copy
         </button>
-      </div>
-      <div>
-        <h6 style={{ marginTop: 10 }}>
-          {words} words, {chars} characters
-        </h6>
-      </div>
-      <div>
-        <h6>{minutes} minute(s) Read.</h6>
       </div>
     </div>
   );
