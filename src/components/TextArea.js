@@ -25,22 +25,32 @@ function TextArea(props) {
   const capitalCase = () => {
     setOutput(input.toUpperCase());
     setText("Final Output");
+    props.handleAlert("Text changed to capital letters.");
   };
 
   const smallCase = () => {
     setOutput(input.toLowerCase());
     setText("Final Output");
+    props.handleAlert("Text changed to small letters.");
   };
 
   const limitText50 = () => {
     setOutput(input.substring(0, 50));
     setText("Final Output");
+    props.handleAlert("Text restricted to 50 characters.");
   };
 
   const limitText100 = () => {
     setOutput(input.substring(0, 100));
     setText("Final Output");
+    props.handleAlert("Text restricted to 100 characters.");
   };
+
+  const handleExtraSpaces=()=>{
+   //let text= input.split(/\s+/g).join(" ").trim()
+   let text= input.replace(/\s+/g, " ").trim()
+   setOutput(text)
+  }
 
   const buttons = (actionHandler, color, displayText) => {
     return (
@@ -80,11 +90,11 @@ function TextArea(props) {
   };
 
   return (
-    <div>
+    <div style={{ display: "flex", flexDirection: "column" }}>
       <div
         style={{
           marginBottom: 10,
-          color: props.mode == "dark" ? "white" : "black",
+          color: props.mode === "dark" ? "white" : "black",
         }}
       >
         <b>Enter the text to Analyze: </b>
@@ -97,13 +107,14 @@ function TextArea(props) {
         onChange={handleChange}
         rows={4}
       ></textarea>
+
       <div>
-        <h6 style={{ color: props.mode == "dark" ? "white" : "black" }}>
+        <h6 style={{ color: props.mode === "dark" ? "white" : "black" }}>
           {words} words, {chars} characters
         </h6>
       </div>
       <div>
-        <h6 style={{ color: props.mode == "dark" ? "white" : "black" }}>
+        <h6 style={{ color: props.mode === "dark" ? "white" : "black" }}>
           {minutes} minute(s) Read.
         </h6>
       </div>
@@ -112,15 +123,18 @@ function TextArea(props) {
           Clear
         </button>
       </div>
-      {buttons(capitalCase, "lightseagreen", "Change to Capital Letters")}
-      {buttons(smallCase, "steelblue", "Change to Small Letters")}
-      {buttons(limitText50, "lightseagreen", "Limit to Fifty Characters")}
-      {buttons(limitText100, "steelblue", "Limit to Hundred Characters")}
+      <div style={{ display: "flex", flexWrap: "wrap" }}>
+        {buttons(capitalCase, "lightseagreen", "Change to Capital Letters")}
+        {buttons(smallCase, "steelblue", "Change to Small Letters")}
+        {buttons(limitText50, "lightseagreen", "Limit to Fifty Characters")}
+        {buttons(limitText100, "steelblue", "Limit to Hundred Characters")}
+        {buttons(handleExtraSpaces, "lightseagreen", "Remove extra spaces")}
+      </div>
       <div
         style={{
           marginTop: 10,
           marginBottom: 10,
-          color: props.mode == "dark" ? "white" : "black",
+          color: props.mode === "dark" ? "white" : "black",
         }}
       >
         <b>{text}</b>

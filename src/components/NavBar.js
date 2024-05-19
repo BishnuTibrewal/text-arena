@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
 function NavBar(props) {
   return (
     <nav
@@ -9,7 +8,7 @@ function NavBar(props) {
         <a
           className="navbar-brand"
           href="/"
-          style={{ color: props.mode == "dark" ? "gray" : "palevioletred" }}
+          style={{ color: props.mode === "dark" ? "gray" : "palevioletred" }}
         >
           {props.title}
         </a>
@@ -61,9 +60,9 @@ function NavBar(props) {
             />
             <label
               className={`form-check-label text-${
-                props.mode == "dark" ? "light" : "dark"
+                props.mode === "dark" ? "light" : "dark"
               }`}
-              for="flexSwitchCheckDefault"
+              htmlFor="flexSwitchCheckDefault"
             >
               Dark Mode
             </label>
@@ -72,8 +71,8 @@ function NavBar(props) {
             <button
               className="btn btn-outline-success"
               style={{
-                color: props.mode == "dark" ? "gray" : "palevioletred",
-                borderColor: props.mode == "dark" ? "gray" : "palevioletred",
+                color: props.mode === "dark" ? "gray" : "palevioletred",
+                borderColor: props.mode === "dark" ? "gray" : "palevioletred",
               }}
             >
               Created By: BishnuTibrewal
