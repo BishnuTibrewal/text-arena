@@ -7,7 +7,7 @@ function NavBar(props) {
       <div className="container-fluid">
         <a
           className="navbar-brand"
-          href="/"
+          href="#"
           style={{ color: props.mode === "dark" ? "gray" : "palevioletred" }}
         >
           {props.title}
@@ -17,7 +17,7 @@ function NavBar(props) {
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"
-                href="/"
+                href="#"
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
@@ -26,12 +26,12 @@ function NavBar(props) {
               </a>
               <ul className="dropdown-menu">
                 <li>
-                  <a className="dropdown-item" href="/">
+                  <a className="dropdown-item" href="#">
                     Framework: React
                   </a>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="/">
+                  <a className="dropdown-item" href="#">
                     Skills: HTML, CSS, JavaScript
                   </a>
                 </li>
@@ -39,7 +39,7 @@ function NavBar(props) {
                   <hr className="dropdown-divider" />
                 </li>
                 <li>
-                  <a className="dropdown-item" href="/">
+                  <a className="dropdown-item" href="#">
                     Support Us: Donate !
                   </a>
                 </li>
