@@ -67,17 +67,6 @@ function NavBar(props) {
               Dark Mode
             </label>
           </div>
-          <form className="d-flex" role="search">
-            <button
-              className="btn btn-outline-success"
-              style={{
-                color: props.mode === "dark" ? "gray" : "palevioletred",
-                borderColor: props.mode === "dark" ? "gray" : "palevioletred",
-              }}
-            >
-              Created By: BishnuTibrewal
-            </button>
-          </form>
         </div>
       </div>
     </nav>

@@ -1,23 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 
 export default function About() {
-  const [style, setStyle] = useState({
-    backgroundColor: "white",
-    color: "black",
-  });
-  const [buttonText, setButtonText] = useState("Dark Mode");
-  const handleMode = () => {
-    if (style.backgroundColor === "white") {
-      setStyle({ backgroundColor: "black", color: "white" });
-      setButtonText("Light Mode");
-    } else {
-      setStyle({ backgroundColor: "white", color: "black" });
-      setButtonText("Dark Mode");
-    }
-  };
+  
+
   return (
-    <div class="accordion" id="accordionExample" style={style}>
-      <div class="accordion-item" style={style}>
+    <div class="accordion" id="accordionExample" >
+      <div class="accordion-item" >
         <h2 class="accordion-header">
           <button
             class="accordion-button"
@@ -26,9 +14,9 @@ export default function About() {
             data-bs-target="#collapseOne"
             aria-expanded="true"
             aria-controls="collapseOne"
-            style={style}
+            
           >
-            Accordion Item #1
+            Beautify
           </button>
         </h2>
         <div
@@ -37,18 +25,11 @@ export default function About() {
           data-bs-parent="#accordionExample"
         >
           <div class="accordion-body">
-            <strong>This is the first item's accordion body.</strong> It is
-            shown by default, until the collapse plugin adds the appropriate
-            classes that we use to style each element. These classes control the
-            overall appearance, as well as the showing and hiding via CSS
-            transitions. You can modify any of this with custom CSS or
-            overriding our default variables. It's also worth noting that just
-            about any HTML can go within the <code>.accordion-body</code>,
-            though the transition does limit overflow.
+            <strong>Removes extra spaces between and around the input text.</strong>
           </div>
         </div>
       </div>
-      <div class="accordion-item" style={style}>
+      <div class="accordion-item" >
         <h2 class="accordion-header">
           <button
             class="accordion-button collapsed"
@@ -57,9 +38,9 @@ export default function About() {
             data-bs-target="#collapseTwo"
             aria-expanded="false"
             aria-controls="collapseTwo"
-            style={style}
+            
           >
-            Accordion Item #2
+            Casing
           </button>
         </h2>
         <div
@@ -68,18 +49,11 @@ export default function About() {
           data-bs-parent="#accordionExample"
         >
           <div class="accordion-body">
-            <strong>This is the second item's accordion body.</strong> It is
-            hidden by default, until the collapse plugin adds the appropriate
-            classes that we use to style each element. These classes control the
-            overall appearance, as well as the showing and hiding via CSS
-            transitions. You can modify any of this with custom CSS or
-            overriding our default variables. It's also worth noting that just
-            about any HTML can go within the <code>.accordion-body</code>,
-            though the transition does limit overflow.
+            <strong>Every first word of a sentence should start with capital letter</strong> 
           </div>
         </div>
       </div>
-      <div class="accordion-item" style={style}>
+      <div class="accordion-item" >
         <h2 class="accordion-header">
           <button
             class="accordion-button collapsed"
@@ -88,9 +62,9 @@ export default function About() {
             data-bs-target="#collapseThree"
             aria-expanded="false"
             aria-controls="collapseThree"
-            style={style}
+            
           >
-            Accordion Item #3
+            Punctuation
           </button>
         </h2>
         <div
@@ -99,20 +73,10 @@ export default function About() {
           data-bs-parent="#accordionExample"
         >
           <div class="accordion-body">
-            <strong>This is the third item's accordion body.</strong> It is
-            hidden by default, until the collapse plugin adds the appropriate
-            classes that we use to style each element. These classes control the
-            overall appearance, as well as the showing and hiding via CSS
-            transitions. You can modify any of this with custom CSS or
-            overriding our default variables. It's also worth noting that just
-            about any HTML can go within the <code>.accordion-body</code>,
-            though the transition does limit overflow.
+            <strong>Every paragraph should end with a fullstop</strong>
           </div>
         </div>
       </div>
-      <button type="button" class="btn btn-primary m-3" onClick={handleMode}>
-        {buttonText}
-      </button>
     </div>
   );
 }
